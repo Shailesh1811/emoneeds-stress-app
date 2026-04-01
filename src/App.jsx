@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { supabase } from "./supabaseClient";
+import emailjs from "@emailjs/browser";
 
 // ── EMONEEDS SVG LOGO (native SVG, zero image dependencies, works offline) ──
 function EmoneedsLogo({h=28, color}) {
@@ -262,6 +263,23 @@ export default function App() {
     } catch (e) {
       console.error(e);
     }
+
+    try {
+      await emailjs.send(
+        'service_7434fac',
+        'template_12ssup8',
+        {
+          user_name: dn!=="there"?dn:"Friend",
+          user_email: em,
+          user_score: sc,
+          user_band: band?.label || band?.key
+        },
+        'bAYpz4FeLe7GTJWM8'
+      );
+    } catch (e) {
+      console.error("EmailJS Error:", e);
+    }
+
     console.log("LEAD:",{name:dn,email:em,company:co,designation:dg,score:sc,band:band?.key,booked_audit:audit});
     setDone(true); setToast(audit?"✅ Audit booked successfully!":"✅ Report sent to your inbox!");
     setTimeout(()=>setToast(""),3500); setTimeout(()=>go("thanks"),900);
