@@ -295,12 +295,14 @@ export default function App() {
     `}</style>
     <div style={{width:"100%",height:"100%",background:bg,transition:"background .65s ease",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
       <Stars accent={scr==="quiz"?ZONES[cq]?.accent:"#2dd4bf"}/>
-      <div style={{position:"absolute",top:0,left:0,right:0,padding:"14px 22px",display:"flex",justifyContent:"space-between",alignItems:"center",zIndex:10}}>
-        <div style={{display:"flex",alignItems:"center"}}>
-          <EmoneedsLogo h={24} />
+      {!["facts", "personal", "stats"].includes(scr) && (
+        <div style={{position:"absolute",top:0,left:0,right:0,padding:"14px 22px",display:"flex",justifyContent:"space-between",alignItems:"center",zIndex:10}}>
+          <div style={{display:"flex",alignItems:"center"}}>
+            <EmoneedsLogo h={24} />
+          </div>
+          {scr!=="welcome"&&<button className="gh" onClick={rst}>Start Over</button>}
         </div>
-        {scr!=="welcome"&&<button className="gh" onClick={rst}>Start Over</button>}
-      </div>
+      )}
       <div className={fd} style={{position:"relative",zIndex:5,width:"100%",maxWidth:600,padding:"14px 18px 32px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",maxHeight:"calc(100vh - 64px)",overflowY:"auto",overflowX:"hidden"}}>
 
         {scr==="welcome"&&<>
