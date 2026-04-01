@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { supabase } from "./supabaseClient";
 
 // ── EMONEEDS SVG LOGO (native SVG, zero image dependencies, works offline) ──
 function EmoneedsLogo({h=28, color}) {
@@ -252,7 +253,15 @@ export default function App() {
     },280);
   };
 
-  const submit=(audit)=>{
+  const submit = async (audit) => {
+    try {
+      const { error } = await supabase.from('leads').insert([
+        { name: dn!=="there"?dn:"", email: em, company: co, designation: dg, score: sc, band: band?.key, booked_audit: audit }
+      ]);
+      if (error) console.error("Supabase Error:", error);
+    } catch (e) {
+      console.error(e);
+    }
     console.log("LEAD:",{name:dn,email:em,company:co,designation:dg,score:sc,band:band?.key,booked_audit:audit});
     setDone(true); setToast(audit?"✅ Audit booked successfully!":"✅ Report sent to your inbox!");
     setTimeout(()=>setToast(""),3500); setTimeout(()=>go("thanks"),900);
