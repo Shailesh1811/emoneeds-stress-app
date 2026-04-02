@@ -43,10 +43,10 @@ const ZONES = [
 ];
 
 const FUN_FACTS = [
-  { icon:"🧠", fact:"Your brain uses only 20 watts of power. Less than your fridge light. But it outperforms every supercomputer ever built.", src:"Northwestern Medicine" },
-  { icon:"💀", fact:"Your brain has zero pain receptors. None. That's why surgeons can operate on it while patients are awake and talking.", src:"National Geographic" },
-  { icon:"🫁", fact:"90% of your body's serotonin (the happiness chemical) is made in your gut, not your brain. Butterflies in your stomach are real neuroscience.", src:"American Psychological Association" },
-  { icon:"👃", fact:"When you smell a stressed person's sweat, your own brain's fear centre activates instantly. Stress spreads through smell alone.", src:"PLOS ONE Research" },
+  { icon:"📉", fact:"Toxic workplace culture is 10.4 times more powerful than compensation in predicting employee attrition rates. Paychecks do not fix bad culture.", src:"MIT Sloan School of Management" },
+  { icon:"🧠", fact:"Chronic corporate stress physically shrinks the prefrontal cortex—the exact region of your brain responsible for executive control and decision-making.", src:"Harvard Medical School" },
+  { icon:"🧘", fact:"Individual wellness perks (like meditation apps) have virtually zero impact on mental health if the company's baseline workload and demands are not addressed.", src:"Oxford University Wellbeing Research" },
+  { icon:"🚬", fact:"Workplace stress contributes to $190 billion in healthcare costs annually, making the modern systemic corporate grind statistically as dangerous as secondhand smoke.", src:"Stanford & Harvard Joint Study" },
 ];
 
 const INDIA_STATS = [
