@@ -184,7 +184,7 @@ function Gauge({score, band}) {
 
 function Prog({cur}) {
   const pct=(cur/10)*100;
-  return <div style={{width:"100%",maxWidth:460,margin:"0 auto 18px"}}>
+  return <div className="prog-w" style={{width:"100%",maxWidth:460,margin:"0 auto 18px"}}>
     <div style={{display:"flex",justifyContent:"space-between",marginBottom:5,fontFamily:"var(--f)",fontSize:11,color:"rgba(255,255,255,.35)",letterSpacing:1.5,fontWeight:600}}>
       <span>{cur+1} / 10</span><span style={{color:ZONES[cur]?.accent}}>{ZONES[cur]?.name}</span>
     </div>
@@ -290,8 +290,27 @@ export default function App() {
       .op:active,.op.s{border-color:#2dd4bf;background:rgba(45,212,191,.1);transform:scale(.96)}
       .cd{background:rgba(255,255,255,.02);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.05);border-radius:18px}
       .gh{background:0;border:0;color:rgba(255,255,255,.25);font:400 11px/1 var(--f);cursor:pointer;text-decoration:underline;text-underline-offset:3px}.gh:hover{color:rgba(255,255,255,.4)}
-      .tp{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2dd4bf;color:#0a0d1a;padding:13px 26px;border-radius:60px;font:700 13px/1 var(--f);box-shadow:0 8px 28px rgba(45,212,191,.35);animation:su .4s ease;z-index:100}
+            .tp{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#2dd4bf;color:#0a0d1a;padding:13px 26px;border-radius:60px;font:700 13px/1 var(--f);box-shadow:0 8px 28px rgba(45,212,191,.35);animation:su .4s ease;z-index:100}
       ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:2px}
+
+      @media (min-width: 1000px) and (orientation: landscape) {
+        .mc { max-width: 1000px !important; padding: 30px 60px 40px !important; }
+        .ht { font-size: 56px !important; margin-bottom: 20px !important; }
+        .hs { font-size: 19px !important; max-width: 600px !important; margin-bottom: 34px !important; line-height: 1.6 !important; }
+        .btn-p { font-size: 18px !important; padding: 22px 60px !important; }
+        .h2t { font-size: 38px !important; margin-bottom: 16px !important; }
+        .st { font-size: 16px !important; margin-bottom: 30px !important; }
+        .g2 { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 24px !important; max-width: 1000px !important; }
+        .g3 { display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 24px !important; max-width: 1060px !important; }
+        .qc { max-width: 860px !important; flex-wrap: nowrap !important; gap: 12px !important; }
+        .qo { min-height: 120px !important; font-size: 16px !important; border-width: 2px !important; }
+        .qo div { width: 14px !important; height: 14px !important; margin-bottom: 8px !important; }
+        .fc { display: flex; flex-direction: column; justify-content: center; }
+        .svg-wrap { transform: scale(1.35); margin: 30px 0 50px !important; }
+        .lead-ip { font-size: 18px !important; padding: 20px 24px !important; }
+        .prog-w { max-width: 700px !important; margin-bottom: 30px !important; }
+        .q-text { font-size: 26px !important; max-width: 700px !important; margin-bottom: 40px !important; line-height: 1.4 !important; }
+      }
     `}</style>
     <div style={{width:"100%",height:"100%",background:bg,transition:"background .65s ease",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",position:"relative",overflow:"hidden"}}>
       <Stars accent={scr==="quiz"?ZONES[cq]?.accent:"#2dd4bf"}/>
@@ -303,38 +322,38 @@ export default function App() {
           {scr!=="welcome"&&<button className="gh" onClick={rst}>Start Over</button>}
         </div>
       )}
-      <div className={fd} style={{position:"relative",zIndex:5,width:"100%",maxWidth:600,padding:"14px 18px 32px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",maxHeight:"calc(100vh - 64px)",overflowY:"auto",overflowX:"hidden"}}>
+      <div className={`${fd} mc`} style={{position:"relative",zIndex:5,width:"100%",maxWidth:600,padding:"14px 18px 32px",textAlign:"center",display:"flex",flexDirection:"column",alignItems:"center",maxHeight:"calc(100vh - 64px)",overflowY:"auto",overflowX:"hidden"}}>
 
         {scr==="welcome"&&<>
           <div style={{marginBottom:20,animation:"fl 4s ease-in-out infinite"}}><EmoneedsLogo h={36} /></div>
-          <h1 style={{font:"900 clamp(26px,5vw,40px)/1.12 var(--f)",color:"#fff",marginBottom:10,letterSpacing:-.5}}>
+          <h1 className="ht" style={{font:"900 clamp(26px,5vw,40px)/1.12 var(--f)",color:"#fff",marginBottom:10,letterSpacing:-.5}}>
             How Stressed<br/><span style={{background:"linear-gradient(135deg,#2dd4bf,#818cf8)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Are You, Really?</span>
           </h1>
-          <p style={{font:"400 14px/1.65 var(--f)",color:"rgba(255,255,255,.4)",maxWidth:380,marginBottom:22}}>
+          <p className="hs" style={{font:"400 14px/1.65 var(--f)",color:"rgba(255,255,255,.4)",maxWidth:380,marginBottom:22}}>
             A 2 minute science backed journey. Get your personalised stress profile with insights powered by real neuroscience research.
           </p>
-          <div style={{display:"flex",gap:18,marginBottom:26,font:"500 11px/1 var(--f)",color:"rgba(255,255,255,.28)",letterSpacing:.5}}>
+          <div className="st" style={{display:"flex",gap:18,marginBottom:26,font:"500 11px/1 var(--f)",color:"rgba(255,255,255,.28)",letterSpacing:.5}}>
             <span>🔬 PSS-10 Validated</span><span>🧩 Personalised</span><span>⏱ 2 min</span>
           </div>
-          <button className="bp" onClick={()=>go("name")} style={{fontSize:16,padding:"19px 44px"}}>Start Your Journey →</button>
+          <button className="bp btn-p" onClick={()=>go("name")} style={{fontSize:16,padding:"19px 44px"}}>Start Your Journey →</button>
         </>}
 
         {scr==="name"&&<>
           <div style={{fontSize:36,marginBottom:14,animation:"fl 3s ease-in-out infinite"}}>👋</div>
-          <h2 style={{font:"800 24px/1.2 var(--f)",color:"#fff",marginBottom:5}}>What should we call you?</h2>
-          <p style={{font:"400 13px/1 var(--f)",color:"rgba(255,255,255,.35)",marginBottom:26}}>Makes your results personal</p>
-          <input className="ip" type="text" placeholder="First name" value={nm} onChange={e=>setNm(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"){if(nm.trim())setDn(nm.trim());go("facts")}}} autoFocus style={{maxWidth:300,textAlign:"center",fontSize:17}}/>
-          <button className="bp" onClick={()=>{if(nm.trim())setDn(nm.trim());go("facts")}} style={{marginTop:18}}>Continue →</button>
+          <h2 className="h2t" style={{font:"800 24px/1.2 var(--f)",color:"#fff",marginBottom:5}}>What should we call you?</h2>
+          <p className="st" style={{font:"400 13px/1 var(--f)",color:"rgba(255,255,255,.35)",marginBottom:26}}>Makes your results personal</p>
+          <input className="ip lead-ip" type="text" placeholder="First name" value={nm} onChange={e=>setNm(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"){if(nm.trim())setDn(nm.trim());go("facts")}}} autoFocus style={{maxWidth:300,textAlign:"center",fontSize:17}}/>
+          <button className="bp btn-p" onClick={()=>{if(nm.trim())setDn(nm.trim());go("facts")}} style={{marginTop:18}}>Continue →</button>
           <button className="gh" onClick={()=>{setDn("there");go("facts")}} style={{marginTop:12}}>Skip</button>
         </>}
 
         {scr==="facts"&&<>
           <div style={{font:"600 12px/1 var(--f)",color:"#2dd4bf",letterSpacing:3,textTransform:"uppercase",marginBottom:10}}>Before we begin...</div>
-          <h2 style={{font:"900 26px/1.15 var(--f)",color:"#fff",marginBottom:5}}>Did You Know? 🤯</h2>
-          <p style={{font:"400 12px/1 var(--f)",color:"rgba(255,255,255,.3)",marginBottom:22}}>Mind blowing facts about your brain</p>
-          <div style={{display:"flex",flexDirection:"column",gap:10,width:"100%",maxWidth:500,marginBottom:24}}>
+          <h2 className="h2t" style={{font:"900 26px/1.15 var(--f)",color:"#fff",marginBottom:5}}>Did You Know? 🤯</h2>
+          <p className="st" style={{font:"400 12px/1 var(--f)",color:"rgba(255,255,255,.3)",marginBottom:22}}>Mind blowing facts about your brain</p>
+          <div className="g2" style={{display:"flex",flexDirection:"column",gap:10,width:"100%",maxWidth:500,marginBottom:24}}>
             {FUN_FACTS.map((f,i)=>(
-              <div key={i} className="cd" style={{padding:"15px 18px",textAlign:"left",animation:`su .45s ${i*.11}s ease forwards`,opacity:0,display:"flex",gap:13,alignItems:"flex-start"}}>
+              <div key={i} className="cd fc" style={{padding:"15px 18px",textAlign:"left",animation:`su .45s ${i*.11}s ease forwards`,opacity:0,display:"flex",gap:13,alignItems:"flex-start"}}>
                 <div style={{fontSize:26,flexShrink:0,marginTop:1}}>{f.icon}</div>
                 <div>
                   <p style={{font:"500 13px/1.55 var(--f)",color:"rgba(255,255,255,.8)"}}>{f.fact}</p>
@@ -351,7 +370,7 @@ export default function App() {
               Answer 10 quick questions and we'll reveal personalised insights about how your brain uniquely handles stress. Based on real neuroscience.
             </p>
           </div>
-          <button className="bp" onClick={()=>go("quiz")} style={{marginTop:4,flexShrink:0}}>Let's Find Out →</button>
+          <button className="bp btn-p" onClick={()=>go("quiz")} style={{marginTop:4,flexShrink:0}}>Let's Find Out →</button>
         </>}
 
         {scr==="quiz"&&<>
@@ -361,12 +380,12 @@ export default function App() {
           </div>
           <div style={{fontSize:32,marginBottom:10,animation:"fl 3s ease-in-out infinite",filter:`drop-shadow(0 0 10px ${ZONES[cq].accent}35)`}}>{ZONES[cq].icon}</div>
           <p style={{font:"600 10px/1 var(--f)",color:ZONES[cq].accent,letterSpacing:2.5,textTransform:"uppercase",marginBottom:7}}>In the last month...</p>
-          <h3 style={{font:"700 clamp(16px,3vw,20px)/1.5 var(--f)",color:"#fff",marginBottom:22,maxWidth:440}}>
+          <h3 className="q-text" style={{font:"700 clamp(16px,3vw,20px)/1.5 var(--f)",color:"#fff",marginBottom:22,maxWidth:440}}>
             How often have you {Q[cq].text}?
           </h3>
-          <div style={{display:"flex",gap:7,width:"100%",maxWidth:500,flexWrap:"wrap",justifyContent:"center"}}>
+          <div className="qc" style={{display:"flex",gap:7,width:"100%",maxWidth:500,flexWrap:"wrap",justifyContent:"center"}}>
             {OPTS.map(o=>(
-              <button key={o.val} className={`op${ans[cq]===o.val?" s":""}`} onClick={()=>pick(o.val)} style={{minWidth:84}}>
+              <button key={o.val} className={`op qo ${ans[cq]===o.val?" s":""}`} onClick={()=>pick(o.val)} style={{minWidth:84}}>
                 <div style={{width:8,height:8,borderRadius:4,background:o.color,boxShadow:`0 0 8px ${o.color}44`}}/>
                 <span>{o.label}</span>
               </button>
@@ -384,8 +403,8 @@ export default function App() {
         </>}
 
         {scr==="results"&&band&&<>
-          <Gauge score={sc} band={band}/>
-          <h2 style={{font:"900 24px/1.2 var(--f)",color:"#fff",marginTop:2}}>
+          <div className="svg-wrap"><Gauge score={sc} band={band}/></div>
+          <h2 className="h2t" style={{font:"900 24px/1.2 var(--f)",color:"#fff",marginTop:2}}>
             {dn!=="there"?dn+"'s":"Your"} score: <span style={{color:band.color}}>{sc}/40</span>
           </h2>
           <div style={{display:"inline-flex",padding:"5px 16px",borderRadius:60,background:`${band.color}12`,border:`1.5px solid ${band.color}30`,font:"700 13px/1 var(--f)",color:band.color,margin:"6px 0 14px"}}>{band.label}</div>
@@ -406,16 +425,16 @@ export default function App() {
               {band.key==="high"&&`${dn!=="there"?dn+", your":"Your"} stress levels are elevated. This is more common among leaders than you'd think. Proactive wellness support reduces these numbers and the ROI is measurable.`}
             </p>
           </div>
-          <button className="bp" onClick={()=>go("personal")} style={{marginTop:4,flexShrink:0}}>Unlock Your Personal Insights →</button>
+          <button className="bp btn-p" onClick={()=>go("personal")} style={{marginTop:4,flexShrink:0}}>Unlock Your Personal Insights →</button>
         </>}
 
         {scr==="personal"&&pf.length>0&&<>
           <div style={{font:"600 11px/1 var(--f)",color:"#2dd4bf",letterSpacing:3,textTransform:"uppercase",marginBottom:7}}>Your Unique Profile</div>
-          <h2 style={{font:"900 22px/1.2 var(--f)",color:"#fff",marginBottom:4}}>What Your Answers Reveal 🔍</h2>
-          <p style={{font:"400 11px/1 var(--f)",color:"rgba(255,255,255,.28)",marginBottom:18}}>Personalised insights from your response patterns</p>
-          <div style={{display:"flex",flexDirection:"column",gap:12,width:"100%",maxWidth:500,marginBottom:20}}>
+          <h2 className="h2t" style={{font:"900 22px/1.2 var(--f)",color:"#fff",marginBottom:4}}>What Your Answers Reveal 🔍</h2>
+          <p className="st" style={{font:"400 11px/1 var(--f)",color:"rgba(255,255,255,.28)",marginBottom:18}}>Personalised insights from your response patterns</p>
+          <div className="g2" style={{display:"flex",flexDirection:"column",gap:12,width:"100%",maxWidth:500,marginBottom:20}}>
             {pf.map((f,i)=>(
-              <div key={i} className="cd" style={{padding:"16px 18px",textAlign:"left",animation:`su .45s ${i*.13}s ease forwards`,opacity:0}}>
+              <div key={i} className="cd fc" style={{padding:"16px 18px",textAlign:"left",animation:`su .45s ${i*.13}s ease forwards`,opacity:0}}>
                 <div style={{display:"flex",alignItems:"center",gap:9,marginBottom:9}}>
                   <span style={{fontSize:22}}>{f.ic}</span>
                   <span style={{font:"700 14px/1 var(--f)",color:"#fff"}}>{f.t}</span>
@@ -427,15 +446,15 @@ export default function App() {
               </div>
             ))}
           </div>
-          <button className="bp" onClick={()=>go("stats")} style={{marginTop:4,flexShrink:0}}>See the Bigger Picture →</button>
+          <button className="bp btn-p" onClick={()=>go("stats")} style={{marginTop:4,flexShrink:0}}>See the Bigger Picture →</button>
         </>}
 
         {scr==="stats"&&<>
-          <h2 style={{font:"900 22px/1.2 var(--f)",color:"#fff",marginBottom:4}}>India Inc. Reality Check</h2>
-          <p style={{font:"400 11px/1 var(--f)",color:"rgba(255,255,255,.28)",marginBottom:18}}>The workplace mental health landscape</p>
-          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(145px,1fr))",gap:10,width:"100%",maxWidth:500,marginBottom:14}}>
+          <h2 className="h2t" style={{font:"900 22px/1.2 var(--f)",color:"#fff",marginBottom:4}}>India Inc. Reality Check</h2>
+          <p className="st" style={{font:"400 11px/1 var(--f)",color:"rgba(255,255,255,.28)",marginBottom:18}}>The workplace mental health landscape</p>
+          <div className="g3" style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(145px,1fr))",gap:10,width:"100%",maxWidth:500,marginBottom:14}}>
             {INDIA_STATS.map((s,i)=>(
-              <div key={i} className="cd" style={{padding:"14px 12px",textAlign:"center",animation:`su .4s ${i*.07}s ease forwards`,opacity:0}}>
+              <div key={i} className="cd fc" style={{padding:"14px 12px",textAlign:"center",animation:`su .4s ${i*.07}s ease forwards`,opacity:0}}>
                 <div style={{fontSize:22,marginBottom:3}}>{s.ic}</div>
                 <div style={{font:"900 22px/1.1 var(--f)",color:"#2dd4bf"}}>{s.n}</div>
                 <div style={{font:"400 10px/1.35 var(--f)",color:"rgba(255,255,255,.38)",marginTop:3}}>{s.l}</div>
@@ -447,15 +466,15 @@ export default function App() {
             <p style={{font:"400 9px/1 var(--f)",color:"rgba(255,255,255,.22)",marginTop:3}}>WHO / Lancet Psychiatry</p>
           </div>
           <p style={{font:"400 9px/1 var(--f)",color:"rgba(255,255,255,.15)",marginBottom:14}}>Deloitte India · McKinsey Health Institute · WHO</p>
-          <button className="bp" onClick={()=>go("lead")} style={{marginTop:4,flexShrink:0}}>Take Action →</button>
+          <button className="bp btn-p" onClick={()=>go("lead")} style={{marginTop:4,flexShrink:0}}>Take Action →</button>
         </>}
 
         {scr==="lead"&&<>
           <div style={{fontSize:32,marginBottom:10}}>🌱</div>
-          <h2 style={{font:"900 22px/1.2 var(--f)",color:"#fff",marginBottom:4}}>Take the First Step</h2>
-          <p style={{font:"400 12px/1 var(--f)",color:"rgba(255,255,255,.32)",marginBottom:22}}>For your organisation's wellbeing</p>
+          <h2 className="h2t" style={{font:"900 22px/1.2 var(--f)",color:"#fff",marginBottom:4}}>Take the First Step</h2>
+          <p className="st" style={{font:"400 12px/1 var(--f)",color:"rgba(255,255,255,.32)",marginBottom:22}}>For your organisation's wellbeing</p>
           {!shA?<>
-            <button className="bp" onClick={()=>setShA(true)} style={{marginBottom:18}}>📋 Book a Free Wellness Audit</button>
+            <button className="bp btn-p" onClick={()=>setShA(true)} style={{marginBottom:18}}>📋 Book a Free Wellness Audit</button>
             <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16,color:"rgba(255,255,255,.18)",font:"400 11px/1 var(--f)"}}>
               <div style={{flex:1,height:1,background:"rgba(255,255,255,.05)"}}/>or<div style={{flex:1,height:1,background:"rgba(255,255,255,.05)"}}/>
             </div>
